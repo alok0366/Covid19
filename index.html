@@ -154,6 +154,7 @@
                        x.insertCell(2);
                        tbval.rows[i].cells[2].innerHTML=data['Countries'][i-1]['TotalRecovered'];
                        tbval.rows[i].cells[2].style.background = '#7a4a91';
+                       tbval.rows[i].cells[0].style.color = '#fff';
                        
                        x.insertCell(3);
                        tbval.rows[i].cells[3].innerHTML=data['Countries'][i-1]['TotalDeaths'];
@@ -162,7 +163,8 @@
                        x.insertCell(4);
                        tbval.rows[i].cells[4].innerHTML=data['Countries'][i-1]['NewConfirmed'];
                        tbval.rows[i].cells[4].style.background = '#7a4a91';
-
+                       tbval.rows[i].cells[0].style.color = '#fff';
+     
                        x.insertCell(5);
                        tbval.rows[i].cells[5].innerHTML=data['Countries'][i-1]['NewRecovered'];
                        tbval.rows[i].cells[5].style.background = '#fff';
@@ -170,6 +172,7 @@
                        x.insertCell(6);
                        tbval.rows[i].cells[6].innerHTML=data['Countries'][i-1]['NewDeaths'];
                        tbval.rows[i].cells[6].style.background = '#7a4a91';
+                       tbval.rows[i].cells[0].style.color = '#fff';
 
 
 
