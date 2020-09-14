@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Covid</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+  <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="fonts/flaticon-covid/font/flaticon.css">
+
+  <link rel="stylesheet" href="css/aos.css">
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body onload="fetch()" data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+
+  <div id="overlayer"></div>
+  <div class="loader">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    
+    <header class="site-navbar light js-sticky-header site-navbar-target" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+
+          <div class="col-6 col-xl-2">
+            <div class="mb-0 site-logo"><a href="index.html" class="mb-0">Covid<span class="text-primary">.</span> </a></div>
+          </div>
+
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                <li class="active"><a href="index.html" class="nav-link">Home</a></li>
+                <li>
+                  <a href="#sec-prevention" class="nav-link">Prevention</a>
+                  
+                </li>
+                <li><a href="#sec-symptom" class="nav-link">Symptoms</a></li>
+                <li><a href="#sec-world" class="nav-link">World Corona Live</a></li>
+                <li><a href="india.html" class="nav-link">India Corona Live</a></li>
+              </ul>
+            </nav>
+          </div>
+
+
+          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3 text-black"></span></a></div>
+
+        </div>
+      </div>
+
+    </header>
+
+    
+
+    <div class="hero-v1">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mr-auto text-center text-lg-left">
+            <span class="d-block subheading">Covid-19 Awareness</span>
+            <h1 class="heading mb-3">Stay Safe. Stay Home.</h1>
+            <p class="mb-5">Safety first, safety last; don't screw up your future by being careless in your past.</p>
+            <p class="mb-4"><a href="#sec-protect" class="btn btn-primary">How to protect</a></p>
+
+
+
+          </div>
+          <div class="col-lg-6">
+            <figure class="illustration">
+              <img src="images/illustration.png" alt="Image" class="img-fluid">
+            </figure>
+          </div>
+          <div class="col-lg-6"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- MAIN -->
+    
+    <div class="site-section stats" id="sec-world">
+      <div class="container">
+        <div class="row mb-3">
+          <div class="col-lg-7 text-center mx-auto">
+            <h2 class="section-heading">Coronavirus World Statistics</h2>
+            </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped text-center" id="tbval">
+              <tr>
+                  <th>Country</th>
+                  <th>TotalConfirmed</th>
+                  <th>TotalRecovered</th>
+                  <th>TotalDeaths</th>
+                  <th>NewConfirmed</th>
+                  <th>NewRecovered</th>
+                  <th>NewDeaths</th>
+              </tr>
+          </table>
+      </div>
+  </section>
+
+  <script>
+      function fetch(){
+          $.get("https://api.covid19api.com/summary",
+               
+               function (data){
+                   var tbval=document.getElementById('tbval');
+                   for(var i=1; i<(data['Countries'].length);i++){
+                       var x=tbval.insertRow();
+                      
+                       x.insertCell(0);
+
+                       tbval.rows[i].cells[0].innerHTML=data['Countries'][i-1]['Country'];
+                       tbval.rows[i].cells[0].style.background = '#7a4a91';
+                       tbval.rows[i].cells[0].style.color = '#fff';
+
+                       x.insertCell(1);
+                       tbval.rows[i].cells[1].innerHTML=data['Countries'][i-1]['TotalConfirmed'];
+                       tbval.rows[i].cells[1].style.background = '#4bb7d8';
+                       
+                       x.insertCell(2);
+                       tbval.rows[i].cells[2].innerHTML=data['Countries'][i-1]['TotalRecovered'];
+                       tbval.rows[i].cells[2].style.background = '#4bb7d8';
+                       
+                       x.insertCell(3);
+                       tbval.rows[i].cells[3].innerHTML=data['Countries'][i-1]['TotalDeaths'];
+                       tbval.rows[i].cells[3].style.background = '#f36e23';
+
+                       x.insertCell(4);
+                       tbval.rows[i].cells[4].innerHTML=data['Countries'][i-1]['NewConfirmed'];
+                       tbval.rows[i].cells[4].style.background = '#4bb7d8';
+
+                       x.insertCell(5);
+                       tbval.rows[i].cells[5].innerHTML=data['Countries'][i-1]['NewRecovered'];
+                       tbval.rows[i].cells[5].style.background = '#9cc850';
+
+                       x.insertCell(6);
+                       tbval.rows[i].cells[6].innerHTML=data['Countries'][i-1]['NewDeaths'];
+                       tbval.rows[i].cells[6].style.background = '#f36e23';
+
+
+
+
+
+
+                   }
+               }
+          );
+      }
+  </script>
+  
+
+    <div class="site-section" id="sec-about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <figure class="img-play-vid">
+              <img src="images/covid.jpg" alt="Image" class="img-fluid">
+              <div class="absolute-block d-flex">
+                <span class="text">Watch the Video</span>
+                <a href="https://www.youtube.com/watch?v=9pVy8sRC440" data-fancybox class="btn-play">
+                  <span class="icon-play"></span>
+                </a>
+              </div>
+            </figure>
+          </div>
+          <div class="col-lg-5 ml-auto" >
+            <h2 class="mb-4 section-heading">What is Coronavirus?</h2>
+            <p>Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus.
+
+              Most people infected with the COVID-19 virus will experience mild to moderate respiratory illness and recover without requiring special treatment.  Older people, and those with underlying medical problems like cardiovascular disease, diabetes, chronic respiratory disease, and cancer are more likely to develop serious illness.Most Common Symptoms-:</p>
+            <ul class="list-check list-unstyled mb-5">
+              <li>Fever</li>
+              <li>Dry Cough</li>
+              <li>Tiredness</li>
+            </ul>
+            <p><a href="https://en.wikipedia.org/wiki/Coronavirus" class="btn btn-primary">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-5">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="feature-v1 d-flex align-items-center">
+            <div class="icon-wrap mr-3">
+              <span class="flaticon-protection"></span>
+            </div>
+            <div>
+              <h3>Protection</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="feature-v1 d-flex align-items-center">
+            <div class="icon-wrap mr-3">
+              <span class="flaticon-patient"></span>
+            </div>
+            <div>
+              <h3>Prevention</h3>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="feature-v1 d-flex align-items-center">
+            <div class="icon-wrap mr-3">
+              <span class="flaticon-hand-sanitizer"></span>
+            </div>
+            <div>
+              <h3>Treatments</h3>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="feature-v1 d-flex align-items-center">
+            <div class="icon-wrap mr-3">
+              <span class="flaticon-virus"></span>
+            </div>
+            <div>
+              <h3>Symptoms</h3>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="site-section bg-primary-light" id="sec-prevention">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+
+            <div class="row">
+              <div class="col-6 col-lg-6 mt-lg-5">
+                <div class="media-v1 bg-1">
+                  <div class="icon-wrap">
+                    <span class="flaticon-stay-at-home"></span>
+                  </div>
+                  <div class="body">
+                    <h3>Stay at home</h3>
+                    
+                  </div>
+                </div>
+
+                <div class="media-v1 bg-1">
+                  <div class="icon-wrap">
+                    <span class="flaticon-patient"></span>
+                  </div>
+                  <div class="body">
+                    <h3>Wear facemask</h3>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-lg-6">
+                <div class="media-v1 bg-1">
+                  <div class="icon-wrap">
+                    <span class="flaticon-social-distancing"></span>
+                  </div>
+                  <div class="body">
+                    <h3>Keep social distancing</h3>
+                    
+                  </div>
+                </div>
+
+                <div class="media-v1 bg-1">
+                  <div class="icon-wrap">
+                    <span class="flaticon-hand-washing"></span>
+                  </div>
+                  <div class="body">
+                    <h3>Wash your hands</h3>
+                    
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="col-lg-5 ml-auto">
+            <h2 class="section-heading mb-4">How to Prevent Coronavirus?</h2>
+            <p>Protect yourself and others around you by knowing the facts and taking appropriate precautions. Follow advice provided by your local health authority.</p>
+            <p class="mb-4">To prevent the spread of COVID-19:</p>
+
+            <ul class="list-check list-unstyled mb-5">
+                <li>Clean your hands often. Use soap and water, or an alcohol-based hand rub.
+                <li>Maintain a safe distance from anyone who is coughing or sneezing.</li>
+                <li>Wear a mask when physical distancing is not possible.</li>
+                <li>Don’t touch your eyes, nose or mouth.</li>
+                <li>Cover your nose and mouth with your bent elbow or a tissue when you cough or sneeze.</li>
+                <li>Stay home if you feel unwell.</li>
+                <li>If you have a fever, cough and difficulty breathing, seek medical attention.</li>
+            </ul>
+
+            <p><a href="https://www.healthline.com/health/coronavirus-prevention" class="btn btn-primary">Read more about prevention</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section" id="sec-protect">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-7 mx-auto text-center">
+            <span class="subheading">What you need to do</span>
+            <h2 class="mb-4 section-heading">How To Protect Yourself</h2>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 ">
+            <div class="row mt-5 pt-5">
+              <div class="col-lg-6 do ">
+                <h3>You should do</h3>
+                <ul class="list-unstyled check">
+                  <li>Stay at home</li>
+                  <li>Wear mask</li>
+                  <li>Use Sanitizer</li>
+                  <li>Disinfect your home</li>
+                  <li>Wash your hands</li>
+                  <li>Frequent self-isolation</li>
+                </ul>
+              </div>
+              <div class="col-lg-6 dont ">
+                <h3>You should avoid</h3>
+                <ul class="list-unstyled cross">
+                  <li>Avoid infected people</li>
+                  <li>Avoid animals</li>
+                  <li>Avoid handshaking</li>
+                  <li>Aviod infected surfaces</li>
+                  <li>Don't touch your face</li>
+                  <li>Avoid droplets</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img src="images/protect.png" alt="Image" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="site-section bg-primary-light" id="sec-symptom">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-7 mx-auto text-center">
+            <h2 class="mb-4 section-heading">Symptoms of Coronavirus</h2>
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 mb-4">
+            <div class="symptom d-flex">
+              <div class="img">
+                <img src="images/symptom_high-fever.png" alt="Image" class="img-fluid">
+              </div>
+              <div class="text">
+                <h3>High Fever</h3>
+                <p>A high grade fever happens when your body temperature is 103°F (39.4°C) or above. Most fevers usually go away by themselves after 1 to 3 days. A persistent or recurrent fever may last or keep coming back for up to 14 days. A fever that lasts longer than normal may be serious even if it is only a slight fever.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mb-4">
+            <div class="symptom d-flex">
+              <div class="img">
+                <img src="images/symptom_cough.png" alt="Image" class="img-fluid">
+              </div>
+              <div class="text">
+                <h3>Cough</h3>
+                <p>A cough, also known as tussis, is a voluntary or involuntary act that clears the throat and breathing passage of foreign particles, microbes, irritants, fluids, and mucus; it is a rapid expulsion of air from the lungs. Coughing can be done deliberately or as part of a reflex.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mb-4">
+            <div class="symptom d-flex">
+              <div class="img">
+                <img src="images/symptom_sore-troath.png" alt="Image" class="img-fluid">
+              </div>
+              <div class="text">
+                <h3>Sore Throat</h3>
+                <p>A sore throat is a painful, dry, or scratchy feeling in the throat.                  
+                  Most sore throats are caused by infections, or by environmental factors like dry air. Although a sore throat can be uncomfortable, it’ll usually go away on its own.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mb-4">
+            <div class="symptom d-flex">
+              <div class="img">
+                <img src="images/symptom_headache.png" alt="Image" class="img-fluid">
+              </div>
+              <div class="text">
+                <h3>Headache</h3>
+                <p>Headache is defined as a pain arising from the head or upper neck of the body. The pain originates from the tissues and structures that surround the skull or the brain because the brain itself has no nerves that give rise to the sensation of pain (pain fibers).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+          <div class="col-lg-10">
+            <div class="note row">
+
+              <div class="col-lg-8 mb-4 mb-lg-0"><strong>Stay at home and call your doctor:</strong> </div>
+              <div class="col-lg-4 text-lg-right">
+                <a href="https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf" class="btn btn-primary"><span class="icon-phone mr-2 mt-3"></span>Help line</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+    <div class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <h2 class="footer-heading mb-4">About Me</h2>
+            <p><strong>Swapnil Raj,</strong>a Web-developer with an experience of website designing and development.He considers himself a ‘forever student’ and stay in tune with the latest website designing strategies through continued coursework.</p>
+            <div class="my-5">
+              <a href="https://www.facebook.com/swapnil.raj.10690" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+              <a href="https://www.linkedin.com/in/swapnil-raj-746871190/" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-4">
+                <h2 class="footer-heading mb-4">Quick Links</h2>
+                <ul class="list-unstyled">
+                  <li><a href="#sec-symptom">Symptoms</a></li>
+                  <li><a href="#sec-prevention">Prevention</a></li>
+                  <li><a href="#sec-about">About Coronavirus</a></li>
+                  <li><a href="https://www.mohfw.gov.in/pdf/coronvavirushelplinenumber.pdf">Contact Us</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-4">
+                <h2 class="footer-heading mb-4">Helpful Link</h2>
+                <ul class="list-unstyled">
+                  <li><a href="https://www.nih.gov/">Helathcare Professional</a></li>
+                  <li><a href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6">Covid-19 Global Map</a></li>
+                  <li><a href="https://healthfocussa.net/infections/protect-your-family-from-coronavirus/">Protect Your Family</a></li>
+                  <li><a href="https://www.who.int/">World Health</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-4">
+                <h2 class="footer-heading mb-4">Resources</h2>
+                <ul class="list-unstyled">
+                  <li><a href="https://www.who.int/">WHO Website</a></li>
+                  <li><a href="https://www.cdc.gov/">CDC Website</a></li>
+                  <li><a href="https://www.india.gov.in/">Gov Website</a></li>
+                  <li><a href="https://www.doh.gov.ph/">DOH Website</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-12">
+            <div class="border-top pt-5">
+              <p class="copyright"><small>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://swapnil-cr7.github.io/newportfolio1/" target="_blank" >Swapnil</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- .site-wrap -->
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.countdown.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.fancybox.min.js"></script>
+  <script src="js/jquery.sticky.js"></script>
+  <script src="js/isotope.pkgd.min.js"></script>
+
+
+  <script src="js/main.js"></script>
+
+
+</body>
+</html>
